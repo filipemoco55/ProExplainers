@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Perfil do Aluno - ProEx</title>
+    <link rel="stylesheet" href="/css/perfil.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo">
+            <img src="/img/logo.png" alt="Logo ProEx" />
+        </div>
+
+        <a id="loginBtn" href="login.html" style="text-decoration: none;">
+            <button class="contact-btn">Login</button>
+        </a>
+
+        <div class="profile-menu" id="adminProfile" style="display: none;">
+            <div class="profile-icon" onclick="toggleProfileMenu()">
+                <span>👤 Admin</span>
+            </div>
+            <div id="dropdown" class="dropdown-content">
+                <a href="index.html">Voltar ao Site</a>
+                <a href="admin.html">Ir para o admin</a>
+                <a href="login.html" onclick="logout(event)">Logout</a>
+            </div>
+        </div>
+
+        <div class="profile-menu" id="explainerProfile" style="display: none;">
+            <div class="profile-icon" onclick="toggleExplainerMenu()">
+                <span>👤 Explicador</span>
+            </div>
+            <div id="dropdownExplainer" class="dropdown-content">
+                <a href="explicador.html">Voltar ao Site</a>
+                <a href="login.html" onclick="logout(event)">Logout</a>
+            </div>
+        </div>
+
+        <div id="userProfile" class="profile-menu" style="display: none;">
+            <div class="profile-icon" onclick="toggleUserMenu()">
+                <span>👤 Utilizador</span>
+            </div>
+            <div id="dropdownUser" class="dropdown-content">
+                <a href="index.html">Voltar ao Site</a>
+                <a href="login.html" onclick="logout(event)">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1 id="boasVindas">Bem-vindo!</h1>
+
+        <section class="info-conta">
+            <h2>Informações da Conta</h2>
+            <ul id="infoContaLista"></ul>
+        </section>
+
+        <section class="acoes-rapidas">
+            <h2>Ações Rápidas</h2>
+            <button onclick="window.location.href='explicacao.html'">📚 Pedir Explicação</button>
+            <button onclick="window.location.href='sugestoes.html'">🔍 Ver Sugestões</button>
+            <button onclick="window.location.href='favoritos.html'">⭐ Meus Favoritos</button>
+            <button onclick="window.location.href='preferencias.html'">⚙️ Preferências</button>
+            <button onclick="window.location.href='agendamentos.html'">📅 Histórico</button>
+        </section>
+
+        <section class="gamificacao">
+            <h2>Gamificação</h2>
+            <p>Progresso para o próximo nível:</p>
+            <progress id="progressoNivel" value="0" max="100"></progress>
+            <p><span id="faltamPontos"></span> pontos até o próximo nível</p>
+        </section>
+
+
+    </div>
+
+    <script src="/js/perfil.js"></script>
+</body>
+
+</html>

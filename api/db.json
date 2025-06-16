@@ -1,0 +1,212 @@
+{
+  "user": [
+    {
+      "id": "1",
+      "name": "Joao Silva",
+      "email": "joaosilva@gmail.com",
+      "password": "123456",
+      "type": "aluno",
+      "cidade": "Porto",
+      "disciplinas": [
+        "Matemática",
+        "Física"
+      ],
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Marco_Polo_%28cropped%29.jpg/800px-Marco_Polo_%28cropped%29.jpg",
+      "mensagens": [
+        {
+          "de": "Marco Polo",
+          "texto": "Olá João, posso ajudar com Matemática?"
+        },
+        {
+          "de": "Albert Einstein",
+          "texto": "Disponível para explicações esta semana!"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Admin",
+      "email": "admin123@gmail.com",
+      "password": "12345",
+      "type": "admin",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Albert_Einstein_%28Nobel%29_-_Restoration.jpg/800px-Albert_Einstein_%28Nobel%29_-_Restoration.jpg",
+      "mensagens": []
+    },
+    {
+      "id": "3",
+      "name": "Carlos Pereira",
+      "email": "carlos@gmail.com",
+      "password": "123456",
+      "type": "aluno",
+      "cidade": "Lisboa",
+      "disciplinas": [
+        "Química",
+        "Física"
+      ],
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Albert_Einstein_%28Nobel%29_-_Restoration.jpg/800px-Albert_Einstein_%28Nobel%29_-_Restoration.jpg",
+      "mensagens": [
+        {
+          "de": "Mike",
+          "texto": "Oi Carlos, já estás preparado para a aula de Física?"
+        }
+      ]
+    }
+  ],
+  "explainer": [
+    {
+      "id": "1",
+      "name": "Marco Polo",
+      "email": "marco@gmail.com",
+      "password": "123456",
+      "image": "https://www.cnnbrasil.com.br/wp-content/uploads/sites/12/2023/07/IMG_4032.jpg?w=495",
+      "bio": "Explainer de Matemática e Física",
+      "disponibilidade": [
+        "9:00",
+        "10:00",
+        "11:00",
+        "12:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00",
+        "18:00"
+      ],
+      "disciplinas": [
+        "Matemática",
+        "Física"
+      ],
+      "nivel": "Secundário",
+      "modalidade": "Presencial",
+      "local": "Porto",
+      "preco": 16,
+      "classificacao": 4.5,
+      "avaliacoes": [],
+      "mensagens": [
+        {
+          "de": "Joao Silva",
+          "texto": "Gostaria de marcar uma sessão de Matemática."
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Albert Einstein",
+      "email": "albert@gmail.com",
+      "password": "12345677",
+      "image": "https://www.cnnbrasil.com.br/wp-content/uploads/sites/12/2023/07/IMG_4020.jpg?w=495",
+      "bio": "Explainer de Matemática e Física",
+      "disponibilidade": [
+        "9:00",
+        "10:00",
+        "15:00",
+        "16:00",
+        "17:00",
+        "18:00"
+      ],
+      "disciplinas": [
+        "Matemática",
+        "Física"
+      ],
+      "nivel": "Universitário",
+      "modalidade": "Online",
+      "local": "Lisboa",
+      "preco": 20,
+      "classificacao": 4.8,
+      "avaliacoes": [],
+      "mensagens": [
+        {
+          "de": "Joao Silva",
+          "texto": "Olá Albert, estás disponível esta semana para uma explicação?"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Mike",
+      "email": "mike@gmail.com",
+      "password": "12345677",
+      "image": "https://www.cnnbrasil.com.br/wp-content/uploads/sites/12/2023/07/IMG_4020.jpg?w=495",
+      "bio": "Explainer de Química, Português e Biologia",
+      "disponibilidade": [
+        "9:00",
+        "10:00",
+        "15:00",
+        "16:00",
+        "17:00",
+        "18:00"
+      ],
+      "disciplinas": [
+        "Quimica",
+        "Portugues",
+        "Biologia"
+      ],
+      "nivel": "Universitário",
+      "modalidade": "Online",
+      "local": "Amarante",
+      "preco": 20,
+      "classificacao": 4,
+      "avaliacoes": [],
+      "mensagens": [
+        {
+          "de": "Carlos Pereira",
+          "texto": "Olá Mike, preciso de ajuda em Química!"
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Steve",
+      "email": "steve@gmail.com",
+      "password": "12345677",
+      "image": "https://www.cnnbrasil.com.br/wp-content/uploads/sites/12/2023/07/IMG_4020.jpg?w=495",
+      "bio": "Explainer de Química e Matemática",
+      "disponibilidade": [
+        "9:00",
+        "10:00",
+        "15:00",
+        "16:00",
+        "17:00",
+        "18:00"
+      ],
+      "disciplinas": [
+        "Quimica",
+        "Matemática"
+      ],
+      "nivel": "Universitário",
+      "modalidade": "Online",
+      "local": "Leiria",
+      "preco": 20,
+      "classificacao": 4,
+      "avaliacoes": [],
+      "mensagens": []
+    },
+    {
+      "id": "5",
+      "name": "Mike",
+      "email": "mikex@gmail.com",
+      "password": "12345677",
+      "image": "https://www.cnnbrasil.com.br/wp-content/uploads/sites/12/2023/07/IMG_4020.jpg?w=495",
+      "bio": "Explainer de Física e Biologia",
+      "disponibilidade": [
+        "9:00",
+        "10:00",
+        "15:00",
+        "16:00",
+        "17:00",
+        "18:00"
+      ],
+      "disciplinas": [
+        "Física",
+        "Biologia"
+      ],
+      "nivel": "Universitário",
+      "modalidade": "Online",
+      "local": "Madeira",
+      "preco": 20,
+      "classificacao": 4,
+      "avaliacoes": [],
+      "mensagens": []
+    }
+  ]
+}

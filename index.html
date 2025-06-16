@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>ProEx</title>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo">
+            <img src="" alt="Logo" />
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#Explainers">Explainers</a></li>
+            <li><a href="#Mensagens">Mensagens</a></li>
+            <li><a href="#About">About</a></li>
+            <li><a href="#Contact">Contact</a></li>
+        </ul>
+
+        <a id="loginBtn" href="login.html" style="text-decoration: none;">
+            <button class="contact-btn">Login</button>
+        </a>
+
+        <div class="profile-menu" id="adminProfile">
+            <div class="profile-icon" onclick="toggleProfileMenu()">
+                <span>👤 Admin</span>
+            </div>
+            <div id="dropdown" class="dropdown-content">
+                <a href="admin.html">Ir para o admin</a>
+                <a href="login.html" onclick="logout(event)">Logout</a>
+            </div>
+        </div>
+
+        <div id="userProfile" class="profile-menu" style="display:none;">
+            <div class="profile-icon" onclick="toggleUserMenu()">
+                <span>👤 Utilizador</span>
+            </div>
+            <div id="dropdownUser" class="dropdown-content" style="display:none;">
+                <a href="perfil.html">Perfil</a>
+                <a href="#" onclick="logout()">Logout</a>
+            </div>
+        </div>
+
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <ul class="nav-links mobile">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#Explainers">Explainers</a></li>
+            <li><a href="#Mensagens">Mensagens</a></li>
+            <li><a href="#About">About</a></li>
+            <li><a href="#Contact">Contact</a></li>
+        </ul>
+    </header>
+
+    <section id="home" class="banner">
+        <h1>PROFESSIONAL <span>EXPLAINER</span></h1>
+    </section>
+
+    <section id="Explainers" class="content-section">
+        <h2>Explainers</h2>
+        <p>Encontra o explicador ideal para ti!</p>
+
+        <div class="filters">
+            <input type="text" id="filter-nome" placeholder="Nome do explicador" />
+
+            <select id="filter-nivel">
+                <option value="">Todos os níveis</option>
+            </select>
+
+            <select id="filter-preco">
+                <option value="">Todos os preços</option>
+                <option value="0-10">Até 10€</option>
+                <option value="10-20">10€ - 20€</option>
+                <option value="20-999">Mais de 20€</option>
+            </select>
+
+            <select id="filter-local">
+                <option value="">Todas as localidades</option>
+            </select>
+
+            <select id="filter-disciplinas" multiple>
+            </select>
+        </div>
+
+        <div id="explainers-container" class="recipe-container">
+
+        </div>
+    </section>
+
+    <section id="mensagens" class="content-section">
+        <div id="mensagensContainer">
+            <p>A carregar mensagens...</p>
+        </div>
+    </section>
+
+
+    <section id="About"
+        style="padding: 50px 20px; background-color: #fff5f5; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #333;">
+        <h2 style="text-align: center; color: #FF7A7A; font-size: 2.5em; margin-bottom: 20px;">Encontra o Teu Explicador
+            ou Estuda com Quem Entende de Verdade</h2>
+        <p
+            style="text-align: center; max-width: 900px; margin: 0 auto 40px; font-size: 1.2em; color: #555; line-height: 1.5;">
+            Seja estudante a procurar reforço numa disciplina ou explicador apaixonado por ensinar, aqui encontras a
+            ligação perfeita para atingir os teus objetivos académicos.
+        </p>
+
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;">
+
+            <div
+                style="flex: 1 1 300px; background-color: #ffffff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); transition: transform 0.3s;">
+                <h3 style="color: #FF7A7A; font-size: 1.8em; margin-bottom: 15px;">Para Estudantes</h3>
+                <ul style="list-style: none; padding: 0; font-size: 1em; line-height: 1.6;">
+                    <li style="margin-bottom: 10px;">• Aulas Personalizadas: Explicações claras e ajustadas ao teu ritmo
+                        de aprendizagem.</li>
+                    <li style="margin-bottom: 10px;">• Diversas Disciplinas: Matemática, Português, Ciências, História e
+                        muito mais!</li>
+                    <li style="margin-bottom: 10px;">• Flexibilidade: Agenda aulas online ou presenciais no horário que
+                        preferires.</li>
+                </ul>
+            </div>
+
+            <div
+                style="flex: 1 1 300px; background-color: #ffffff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); transition: transform 0.3s;">
+                <h3 style="color: #FF7A7A; font-size: 1.8em; margin-bottom: 15px;">Para Explicadores</h3>
+                <ul style="list-style: none; padding: 0; font-size: 1em; line-height: 1.6;">
+                    <li style="margin-bottom: 10px;">• Partilha o teu Conhecimento: Ajuda estudantes a compreenderem
+                        melhor as suas matérias.</li>
+                    <li style="margin-bottom: 10px;">• Ganhe Flexibilidade: Trabalha de onde quiser e no teu próprio
+                        ritmo.</li>
+                    <li style="margin-bottom: 10px;">• Constrói a tua Reputação: Recebe avaliações e destaca-te na
+                        comunidade.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 50px;">
+            <h3 style="color: #FF7A7A; font-size: 2em; margin-bottom: 20px;">Como Funciona</h3>
+            <ol
+                style="max-width: 900px; margin: 0 auto; font-size: 1.2em; line-height: 1.6; color: #555; padding-left: 20px; ">
+                <li><strong>Regista-te:</strong> Cria a tua conta como estudante ou explicador.</li>
+                <li><strong>Procura ou Oferece Aulas:</strong> Encontra o estudante ideal ou o explicador perfeito.</li>
+                <li><strong>Agenda e Começa a Aprender ou Ensinar!</strong> Aproveita uma experiência de aprendizagem
+                    mais eficiente e personalizada.</li>
+            </ol>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="register.html" style="text-decoration: none;">
+                <button class="contact-btn">Regista-te</button>
+            </a>
+            <a href="login.html" style="text-decoration: none;">
+                <button class="contact-btn">Login</button>
+            </a>
+        </div>
+    </section>
+
+    <section id="Contact" class="banner">
+        <div class="contact-container">
+            <form action="https://api.web3forms.com/submit" method="POST" class="contact-left">
+                <div class="contact-left-title">
+                    <h2>Envia-nos um email</h2>
+                    <hr />
+                </div>
+                <input type="hidden" name="access_key" value="d036c687-2033-4e9f-a452-1cf1e9a9a651" />
+                <input type="text" name="name" placeholder="O teu nome" class="contact-inputs" required />
+                <input type="email" name="email" placeholder="O teu email" class="contact-inputs" required />
+                <textarea name="message" placeholder="A tua mensagem " class="contact-inputs" required></textarea>
+                <button type="submit" class="btn btn-outline-info">Enviar</button>
+            </form>
+        </div>
+        <div class="conctact-right"></div>
+    </section>
+
+    <button id="back-to-top" class="back-to-top" onclick="scrollToTop()">&#8593;</button>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+            </div>
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#Explainers">Explainers</a>
+                <a href="#Mensagens">Mensagens</a>
+                <a href="#About">About</a>
+                <a href="#Contact">Contact</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 PROFESSIONAL EXPLAINER</p>
+        </div>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="/js/script.js"></script>
+    <script src="controller/explainers.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

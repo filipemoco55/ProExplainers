@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Painel Admin - Explicações</title>
+    <link rel="stylesheet" href="/css/admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="sidebar">
+        <h2>Admin Painel</h2>
+        <ul>
+            <li onclick="showSection('utilizadores')">Utilizadores</li>
+            <li onclick="showSection('disciplinas')">Disciplinas</li>
+            <li onclick="showSection('niveis')">Níveis</li>
+            <li onclick="showSection('buscas')">Buscas</li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div class="profile-menu">
+            <div class="profile-icon" onclick="toggleProfileMenu()">
+                <span>👤 Admin</span>
+                <div id="dropdown" class="dropdown-content">
+                    <a href="index.html">Ir para o site</a>
+                    <a href="login.html" onclick="logout()">Logout</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- UTILIZADORES -->
+        <div id="utilizadores" class="section active">
+            <h1>Gestão de Utilizadores</h1>
+            <div class="section-tools">
+                <button onclick="openModal('addUserModal')">Adicionar Utilizador</button>
+                <input type="text" id="searchUser" placeholder="Pesquisar..." oninput="filtrarUtilizadores()">
+            </div>
+            <table class="user-table">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Tipo</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="userTableBody">
+                    <!-- Utilizadores vão aparecer aqui -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- DISCIPLINAS -->
+        <div id="disciplinas" class="section">
+            <h1>Gestão de Disciplinas</h1>
+            <div class="section-tools">
+                <button onclick="openModal('addDisciplinaModal')">Adicionar Disciplina</button>
+                <input type="text" id="searchDisciplina" placeholder="Pesquisar..." oninput="filtrarDisciplinas()">
+            </div>
+            <table class="user-table">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="disciplinaTableBody"></tbody>
+            </table>
+        </div>
+
+        <!-- Modal adicionar utilizador -->
+        <div id="addUserModal" class="modal" style="display:none;">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('addUserModal')">&times;</span>
+                <h2>Adicionar Utilizador</h2>
+                <input type="text" id="addNome" placeholder="Nome" />
+                <input type="email" id="addEmail" placeholder="Email" />
+                <select id="addTipo">
+                    <option value="">Tipo</option>
+                    <option value="Admin">Admin</option>
+                    <option value="Explicador">Explicador</option>
+                    <option value="Aluno">Aluno</option>
+                </select>
+                <input type="password" id="addPassword" placeholder="Password" />
+                <button onclick="adicionarUtilizador()">Guardar</button>
+            </div>
+        </div>
+
+        <div id="addDisciplinaModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('addDisciplinaModal')">&times;</span>
+                <h2>Adicionar Disciplina</h2>
+                <input type="text" id="addDisciplinaNome" placeholder="Nome da Disciplina" />
+                <button onclick="adicionarDisciplina()">Adicionar</button>
+            </div>
+        </div>
+
+        <script src="/js/admin.js"></script>
+</body>
+
+</html>

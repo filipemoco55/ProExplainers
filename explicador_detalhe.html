@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Perfil do Explicador</title>
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+    <div class="container">
+        <button class="back-button" onclick="history.back()">Voltar</button>
+        <h1 id="perfilTitulo">Perfil do Explicador</h1>
+        <div id="explicadorInfo"></div>
+
+        <section id="mensagemSecao">
+            <h2 id="mensagemTitulo">Enviar Mensagem</h2>
+            <textarea id="mensagemTexto" class="contact-inputs"></textarea>
+            <button onclick="enviarMensagem()">Enviar</button>
+        </section>
+
+        <section id="mensagensRecebidas" style="display: none;">
+            <h2 id="mensagensRecebidas">Mensagens Recebidas</h2>
+            <ul id="mensagensLista"></ul>
+        </section>
+    </div>
+
+    <script src="/js/explicador_detalhe.js"></script>
+</body>
+
+</html>

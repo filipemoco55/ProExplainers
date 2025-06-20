@@ -50,6 +50,17 @@
           "texto": "Oi Carlos, já estás preparado para a aula de Física?"
         }
       ]
+    },
+    {
+      "id": "b6cc7a0b-f1e3-4466-909e-b8c1f1c03911",
+      "name": "Diogo",
+      "email": "diogo@gmail.com",
+      "password": "123",
+      "type": "aluno",
+      "cidade": "",
+      "disciplinas": [],
+      "image": "https://via.placeholder.com/150",
+      "mensagens": []
     }
   ],
   "explainer": [
@@ -205,6 +216,27 @@
       "local": "Madeira",
       "preco": 20,
       "classificacao": 4,
+      "avaliacoes": [],
+      "mensagens": []
+    },
+    {
+      "id": "0ff8d244-7da5-4e04-98f4-147daeb057e7",
+      "name": "gabriela",
+      "email": "gabrielavalente1110@gmail.com",
+      "password": "123",
+      "image": "https://via.placeholder.com/150",
+      "bio": "",
+      "disponibilidade": [
+        "manhas"
+      ],
+      "disciplinas": [
+        "Portugues"
+      ],
+      "nivel": "Universitário",
+      "modalidade": "Presencial",
+      "local": "porto",
+      "preco": 20,
+      "classificacao": 0,
       "avaliacoes": [],
       "mensagens": []
     }

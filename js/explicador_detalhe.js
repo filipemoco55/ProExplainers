@@ -30,7 +30,13 @@ document.addEventListener('DOMContentLoaded', () => {
     mostrarMensagensRecebidas(explicador.email);
     document.getElementById("mensagemSecao").style.display = "none";
   }
+
+  inicializarAvaliacao(explicador);
+  inicializarReserva(explicador);
+  gerarDiasSemana(explicador);
+
 });
+
 
 
 function enviarMensagem() {
@@ -138,6 +144,189 @@ window.addEventListener("scroll", function () {
     navbar.classList.remove("scrolled");
   }
 });
+
+function inicializarAvaliacao(explicador) {
+  const estrelasContainer = document.getElementById("estrelasContainer");
+  const mediaEstrelas = document.getElementById("mediaEstrelas");
+  const utilizadorAtual = JSON.parse(localStorage.getItem("utilizadorAtual"));
+
+  if (!explicador.avaliacoes) explicador.avaliacoes = [];
+
+  const avaliacaoUtilizador = explicador.avaliacoes.find(a => a.userId === utilizadorAtual?.id);
+  const notaAtual = avaliacaoUtilizador ? avaliacaoUtilizador.nota : 0;
+
+  estrelasContainer.innerHTML = "";
+
+  for (let i = 1; i <= 5; i++) {
+    const estrela = document.createElement("span");
+    estrela.textContent = "★";
+    estrela.style.cursor = "pointer";
+    estrela.style.fontSize = "24px";
+    estrela.style.color = i <= notaAtual ? "gold" : "gray";
+
+    estrela.onclick = () => {
+      avaliarExplicador(explicador.id, i);
+    };
+
+    estrelasContainer.appendChild(estrela);
+  }
+
+  // Mostra só o valor do campo classificacao, arredondado a 1 decimal
+  const classificacao = explicador.classificacao ? explicador.classificacao.toFixed(1) : "0.0";
+  mediaEstrelas.textContent = `${classificacao}`;
+}
+
+
+
+function avaliarExplicador(explicadorId, nota) {
+  const explicadores = JSON.parse(localStorage.getItem("explicadores")) || [];
+  const utilizadorAtual = JSON.parse(localStorage.getItem("utilizadorAtual"));
+
+  if (!utilizadorAtual) {
+    return alert("Precisas de estar autenticado para avaliar.");
+  }
+
+  const explicador = explicadores.find(e => e.id === explicadorId);
+  if (!explicador) return alert("Explicador não encontrado.");
+
+  if (!explicador.avaliacoes) explicador.avaliacoes = [];
+
+  const avaliacaoExistente = explicador.avaliacoes.find(a => a.userId === utilizadorAtual.id);
+  if (avaliacaoExistente) {
+    // Atualiza nota do utilizador que já avaliou
+    avaliacaoExistente.nota = nota;
+  } else {
+    // Adiciona nova avaliação
+    explicador.avaliacoes.push({ userId: utilizadorAtual.id, nota });
+  }
+
+  // Recalcula a média de todas as avaliações
+  const somaNotas = explicador.avaliacoes.reduce((acc, a) => acc + a.nota, 0);
+  const media = somaNotas / explicador.avaliacoes.length;
+  explicador.classificacao = parseFloat(media.toFixed(1)); // arredonda a 1 decimal
+
+  // Atualiza o localStorage
+  const idx = explicadores.findIndex(e => e.id === explicadorId);
+  explicadores[idx] = explicador;
+  localStorage.setItem("explicadores", JSON.stringify(explicadores));
+
+  alert("Avaliação registrada!");
+  inicializarAvaliacao(explicador); // Atualiza visualmente
+}
+
+
+function inicializarReserva(explicador) {
+  const select = document.getElementById('horarioSelect');
+  if (!select) return console.error('Elemento select "horarioSelect" não encontrado.');
+
+  const reservasAtuais = explicador.reservas || [];
+  const horariosDisponiveis = (explicador.disponibilidade || []).filter(h => !reservasAtuais.includes(h));
+
+  select.innerHTML = '';
+
+  if (horariosDisponiveis.length === 0) {
+    select.disabled = true;
+    select.innerHTML = '<option>Sem horários disponíveis</option>';
+  } else {
+    select.disabled = false;
+    horariosDisponiveis.forEach(horario => {
+      const option = document.createElement('option');
+      option.value = horario;
+      option.textContent = horario;
+      select.appendChild(option);
+    });
+  }
+}
+
+
+function mostrarHorarios(explicador, dataSelecionada) {
+  const horariosDiv = document.getElementById("horariosDia");
+  horariosDiv.innerHTML = `<h4>Horários para ${dataSelecionada}</h4>`;
+
+  // Obtem as reservas para esta data
+  const todasMarcacoes = JSON.parse(localStorage.getItem("marcacoes")) || [];
+  const reservas = todasMarcacoes.filter(
+    m => m.explainerId === explicador.id && m.data === dataSelecionada
+  );
+
+  // Usa os horários que o explicador tem disponíveis
+  explicador.disponibilidade.forEach(hora => {
+    // Verifica se horário já está reservado neste dia
+    const ocupado = reservas.some(r => r.hora === hora);
+
+    const btn = document.createElement("button");
+    btn.textContent = hora;
+    btn.disabled = ocupado;
+    btn.className = ocupado ? "btn-hora ocupado" : "btn-hora disponivel";
+
+    if (!ocupado) {
+      btn.onclick = () => reservarHorarioDataHora(explicador, dataSelecionada, hora);
+    }
+
+    horariosDiv.appendChild(btn);
+  });
+}
+
+function reservarHorarioDataHora(explicador, dataSelecionada, horaSelecionada) {
+  const utilizadorAtual = JSON.parse(localStorage.getItem("utilizadorAtual"));
+  if (!utilizadorAtual) return alert("Precisas de estar autenticado para reservar.");
+
+  // Verifica novamente se horário está ocupado (pode ter mudado)
+  explicador.reservas = explicador.reservas || [];
+  const jaReservado = explicador.reservas.some(r => r.data === dataSelecionada && r.hora === horaSelecionada);
+  if (jaReservado) return alert("Este horário já foi reservado.");
+
+  // Adiciona a reserva ao explicador
+  explicador.reservas.push({ data: dataSelecionada, hora: horaSelecionada });
+
+  // Guarda no localStorage o explicador atualizado
+  const explicadores = JSON.parse(localStorage.getItem("explicadores")) || [];
+  const idx = explicadores.findIndex(e => e.id === explicador.id);
+  if (idx !== -1) {
+    explicadores[idx] = explicador;
+    localStorage.setItem("explicadores", JSON.stringify(explicadores));
+  }
+
+  // Guarda reserva no utilizador atual
+  const marcacoes = JSON.parse(localStorage.getItem("marcacoes")) || [];
+
+  marcacoes.push({
+    id: crypto.randomUUID(),
+    alunoEmail: utilizadorAtual.email,
+    explainerId: explicador.id,
+    data: dataSelecionada,
+    hora: horaSelecionada
+  });
+
+  localStorage.setItem("marcacoes", JSON.stringify(marcacoes));
+  explicador.reservas.push({ data: dataSelecionada, hora: horaSelecionada });
+
+  alert(`Reserva feita com sucesso para dia ${dataSelecionada} às ${horaSelecionada}!`);
+  mostrarHorarios(explicador, dataSelecionada);
+}
+
+function gerarDiasSemana(explicador) {
+  const diasSemanaDiv = document.getElementById('diasSemana');
+  diasSemanaDiv.innerHTML = '';
+
+  // Exemplo: mostrar os próximos 7 dias a partir de hoje
+  const hoje = new Date();
+
+  for (let i = 0; i < 7; i++) {
+    const dia = new Date(hoje);
+    dia.setDate(hoje.getDate() + i);
+
+    const diaStr = dia.toISOString().split('T')[0]; // formato YYYY-MM-DD
+
+    const btn = document.createElement('button');
+    btn.textContent = dia.toLocaleDateString('pt-PT', { weekday: 'short', day: 'numeric', month: 'numeric' });
+    btn.className = 'btn-dia';
+    btn.onclick = () => mostrarHorarios(explicador, diaStr);
+
+    diasSemanaDiv.appendChild(btn);
+  }
+}
+
 
 window.addEventListener('DOMContentLoaded', () => {
   const tipo = localStorage.getItem('tipoConta');

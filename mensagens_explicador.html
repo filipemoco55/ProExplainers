@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mensagens - ProEx</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+  <header class="navbar">
+        <div class="logo">
+            <img src="" alt="Logo" />
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#Explainers">Explainers</a></li>
+            <li><a href="#mensagens">Mensagens</a></li>
+            <li><a href="#About">About</a></li>
+            <li><a href="#Contact">Contact</a></li>
+        </ul>
+
+        <a id="loginBtn" href="login.html" style="text-decoration: none;">
+            <button class="contact-btn">Login</button>
+        </a>
+
+        <div class="profile-menu" id="adminProfile">
+            <div class="profile-icon" onclick="toggleProfileMenu()">
+                <span>👤 Admin</span>
+            </div>
+            <div id="dropdown" class="dropdown-content">
+                <a href="admin.html">Ir para o admin</a>
+                <a href="login.html" onclick="logout(event)">Logout</a>
+            </div>
+        </div>
+
+        <div id="userProfile" class="profile-menu" style="display:none;">
+            <div class="profile-icon" onclick="toggleUserMenu()">
+                <span>👤 Utilizador</span>
+            </div>
+            <div id="dropdownUser" class="dropdown-content" style="display:none;">
+                <a href="perfil.html">Perfil</a>
+                <a href="#" onclick="logout()">Logout</a>
+                <a href="./mensagens.html">Mensagens</a>
+            </div>
+        </div>
+
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <ul class="nav-links mobile">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#Explainers">Explainers</a></li>
+            <li><a href="#mensagens">Mensagens</a></li>
+            <li><a href="#About">About</a></li>
+            <li><a href="#Contact">Contact</a></li>
+        </ul>
+    </header>
+
+  <main style="padding: 40px;">
+    <section id="mensagens" class="content-section">
+      <h1>As Tuas Conversas</h1>
+      <div id="mensagensContainer">
+        <p>A carregar mensagens...</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 PROFESSIONAL EXPLAINER</p>
+  </footer>
+
+  <!-- Scripts -->
+   <script src="js/script.js"></script>
+  <script src="js/explicador.js"></script>
+</body>
+
+</html>

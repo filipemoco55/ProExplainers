@@ -154,3 +154,31 @@
                 text-align: center;
             }
         }
+
+        .marcacoes-section {
+            margin-top: 2rem;
+            background: #f9f9f9;
+            padding: 1rem;
+            border-radius: 6px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .marcacoes-section h2 {
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .marcacoes-section ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .marcacoes-section ul li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #ddd;
+            font-size: 1rem;
+        }
+
+        .marcacoes-section ul li:last-child {
+            border-bottom: none;
+        }

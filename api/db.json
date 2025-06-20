@@ -58,7 +58,7 @@
       "name": "Marco Polo",
       "email": "marco@gmail.com",
       "password": "123456",
-      "image": "https://www.cnnbrasil.com.br/wp-content/uploads/sites/12/2023/07/IMG_4032.jpg?w=495",
+      "image": "https://www.d-id.com/wp-content/uploads/2023/12/D-ID-portrait_character.png",
       "bio": "Explainer de Matemática e Física",
       "disponibilidade": [
         "9:00",
@@ -94,7 +94,7 @@
       "name": "Albert Einstein",
       "email": "albert@gmail.com",
       "password": "12345677",
-      "image": "https://www.cnnbrasil.com.br/wp-content/uploads/sites/12/2023/07/IMG_4020.jpg?w=495",
+      "image": "https://images.media.io/images2023/ai-portrait-generator/portrait-pic2.png",
       "bio": "Explainer de Matemática e Física",
       "disponibilidade": [
         "9:00",
@@ -126,7 +126,7 @@
       "name": "Mike",
       "email": "mike@gmail.com",
       "password": "12345677",
-      "image": "https://www.cnnbrasil.com.br/wp-content/uploads/sites/12/2023/07/IMG_4020.jpg?w=495",
+      "image": "https://images.insmind.com/market-operations/independent/side/c90eccbe2dd44c4d88a5cdff12c01b6c/1739773505102.png",
       "bio": "Explainer de Química, Português e Biologia",
       "disponibilidade": [
         "9:00",
@@ -156,10 +156,10 @@
     },
     {
       "id": "4",
-      "name": "Steve",
+      "name": "Leonor",
       "email": "steve@gmail.com",
       "password": "12345677",
-      "image": "https://www.cnnbrasil.com.br/wp-content/uploads/sites/12/2023/07/IMG_4020.jpg?w=495",
+      "image": "https://images.insmind.com/market-operations/independent/side/d9bc8620b4a64135aaa4abc90b6800ac/1740627289962.png",
       "bio": "Explainer de Química e Matemática",
       "disponibilidade": [
         "9:00",
@@ -183,10 +183,10 @@
     },
     {
       "id": "5",
-      "name": "Mike",
+      "name": "Ana Maria",
       "email": "mikex@gmail.com",
       "password": "12345677",
-      "image": "https://www.cnnbrasil.com.br/wp-content/uploads/sites/12/2023/07/IMG_4020.jpg?w=495",
+      "image": "https://photoavatarmaker.com/wp-content/uploads/2025/04/bored-avatar-sample.jpeg",
       "bio": "Explainer de Física e Biologia",
       "disponibilidade": [
         "9:00",

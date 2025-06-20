@@ -62,7 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const favoritos = user.favoritos || [];
     const listaFavoritosEl = document.getElementById('listaFavoritos');
-    listaFavoritosEl.innerHTML = '';
     favoritos.forEach(fav => {
         const li = document.createElement('li');
         li.innerHTML = `
@@ -83,6 +82,8 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = 'login.html';
         });
     });
+
+    carregarMarcacoes(user.email);
 });
 
 function abrirChat(de, para, nomePara) {
@@ -102,7 +103,7 @@ function abrirChat(de, para, nomePara) {
 function carregarMensagens(emailAluno) {
     const mensagens = JSON.parse(localStorage.getItem("mensagens")) || [];
     const todasAsConversas = mensagens.filter(m => m.de === emailAluno || m.para === emailAluno);
-    
+
     const agrupadasPorExplicador = {};
 
     todasAsConversas.forEach(msg => {
@@ -169,10 +170,39 @@ function carregarMensagens(emailAluno) {
     document.querySelector('.container').appendChild(section);
 }
 
+function carregarMarcacoes(emailAluno) {
+    const marcacoes = JSON.parse(localStorage.getItem('marcacoes')) || [];
+    const minhasMarcacoes = marcacoes.filter(m => m.alunoEmail === emailAluno);
+
+    const lista = document.getElementById('listaMarcacoes');
+    lista.innerHTML = '';
+
+    if (minhasMarcacoes.length === 0) {
+        lista.innerHTML = '<li>Não há marcações registradas.</li>';
+    } else {
+        minhasMarcacoes.forEach(marcacao => {
+            const explicador = buscarExplicadorPorId(marcacao.explainerId);
+            const nomeExplicador = explicador ? explicador.name : `Explicador ${marcacao.explainerId}`;
+
+            const li = document.createElement('li');
+            li.textContent = `${marcacao.data} - com ${nomeExplicador} às ${marcacao.hora}`;
+            lista.appendChild(li);
+        });
+    }
+}
+
+
+
 function buscarExplicadorPorEmail(email) {
     const explicadores = JSON.parse(localStorage.getItem("explicadores")) || [];
     return explicadores.find(e => e.email === email);
 }
+
+function buscarExplicadorPorId(id) {
+    const explicadores = JSON.parse(localStorage.getItem("explicadores")) || [];
+    return explicadores.find(e => e.id == id);
+}
+
 
 function toggleProfileMenu() {
     const dropdown = document.getElementById('dropdown');

@@ -178,7 +178,7 @@ function inicializarAvaliacao(explicador) {
 
 
 
-function avaliarExplicador(explicadorId, nota) {
+async function avaliarExplicador(explicadorId, nota) {
   const explicadores = JSON.parse(localStorage.getItem("explicadores")) || [];
   const utilizadorAtual = JSON.parse(localStorage.getItem("utilizadorAtual"));
 
@@ -193,24 +193,39 @@ function avaliarExplicador(explicadorId, nota) {
 
   const avaliacaoExistente = explicador.avaliacoes.find(a => a.userId === utilizadorAtual.id);
   if (avaliacaoExistente) {
-    // Atualiza nota do utilizador que já avaliou
     avaliacaoExistente.nota = nota;
   } else {
-    // Adiciona nova avaliação
     explicador.avaliacoes.push({ userId: utilizadorAtual.id, nota });
   }
 
-  // Recalcula a média de todas as avaliações
+  // Recalcula a média
   const somaNotas = explicador.avaliacoes.reduce((acc, a) => acc + a.nota, 0);
   const media = somaNotas / explicador.avaliacoes.length;
-  explicador.classificacao = parseFloat(media.toFixed(1)); // arredonda a 1 decimal
+  explicador.classificacao = parseFloat(media.toFixed(1));
 
-  // Atualiza o localStorage
+  // Atualiza localStorage
   const idx = explicadores.findIndex(e => e.id === explicadorId);
   explicadores[idx] = explicador;
   localStorage.setItem("explicadores", JSON.stringify(explicadores));
 
-  alert("Avaliação registrada!");
+  // Envia atualização para a mock API (json-server)
+  try {
+    await fetch(`http://localhost:3000/explainer/${explicadorId}`, {
+      method: "PATCH", // ou PUT, se estiveres a enviar o objeto completo
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        classificacao: explicador.classificacao,
+        avaliacoes: explicador.avaliacoes
+      })
+    });
+    alert("Avaliação registrada e enviada para o servidor!");
+  } catch (error) {
+    console.error("Erro ao atualizar a base de dados:", error);
+    alert("Erro ao enviar a avaliação para o servidor.");
+  }
+
   inicializarAvaliacao(explicador); // Atualiza visualmente
 }
 

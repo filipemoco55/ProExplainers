@@ -85,7 +85,7 @@ async function mostrarUtilizadores() {
     });
 }
 
-function adicionarUtilizador() {
+async function adicionarUtilizador() {
     const nome = document.getElementById('addNome').value.trim();
     const email = document.getElementById('addEmail').value.trim();
     const tipoRaw = document.getElementById('addTipo').value;
@@ -109,12 +109,32 @@ function adicionarUtilizador() {
         type: tipo,
         name: nome,
         password,
-        image: 'https://via.placeholder.com/150'
+        image: 'https://via.placeholder.com/150',
+        mensagens: [],
+        cidade: '',
+        disciplinas: []
     };
 
+    // Guarda localmente
     utilizadores.push(novo);
     localStorage.setItem('utilizadores', JSON.stringify(utilizadores));
 
+    // Guarda na mock API
+    try {
+        await fetch('http://localhost:3000/user', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(novo)
+        });
+        alert('Utilizador adicionado com sucesso!');
+    } catch (error) {
+        console.error('Erro ao adicionar utilizador no servidor:', error);
+        alert('Erro ao guardar o utilizador na base de dados.');
+    }
+
+    // Limpa o formulário
     document.getElementById('addNome').value = '';
     document.getElementById('addEmail').value = '';
     document.getElementById('addTipo').value = '';
@@ -123,6 +143,7 @@ function adicionarUtilizador() {
     closeModal('addUserModal');
     mostrarUtilizadores();
 }
+
 
 function editarUtilizador(id, origem) {
     alert(`Função editar utilizador ainda não implementada (${origem})`);

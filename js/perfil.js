@@ -81,28 +81,101 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+        carregarDadosParaLocalStorage();
+
     carregarMarcacoes(user.email);
+
 });
 
-function carregarMarcacoes(emailAluno) {
+function carregarMarcacoes() {
     const marcacoes = JSON.parse(localStorage.getItem('marcacoes')) || [];
-    const minhasMarcacoes = marcacoes.filter(m => m.alunoEmail === emailAluno);
-
+    const utilizador = JSON.parse(localStorage.getItem('utilizadorAtual'));
     const lista = document.getElementById('listaMarcacoes');
     lista.innerHTML = '';
+
+    if (!utilizador) {
+        lista.innerHTML = '<li>Utilizador não autenticado.</li>';
+        return;
+    }
+
+    let minhasMarcacoes = [];
+
+    if (utilizador.type === 'aluno') {
+        minhasMarcacoes = marcacoes.filter(m => m.alunoEmail === utilizador.email);
+    } else if (utilizador.type === 'explicador' || utilizador.tipo === 'explicador') {
+        minhasMarcacoes = marcacoes.filter(m => String(m.explainerId) === String(utilizador.id));
+    }
 
     if (minhasMarcacoes.length === 0) {
         lista.innerHTML = '<li>Não há marcações registradas.</li>';
     } else {
         minhasMarcacoes.forEach(marcacao => {
-            const explicador = buscarExplicadorPorId(marcacao.explainerId);
-            const nomeExplicador = explicador ? explicador.name : `Explicador ${marcacao.explainerId}`;
+            let outroUtilizador;
+
+            if (utilizador.type === 'aluno') {
+                outroUtilizador = buscarExplicadorPorId(marcacao.explainerId);
+            } else {
+                outroUtilizador = buscarAlunoPorEmail(marcacao.alunoEmail);
+            }
+
+            console.log('Outro utilizador encontrado:', outroUtilizador);
+
+            const nomeOutro = outroUtilizador ? (outroUtilizador.name || outroUtilizador.nome) : 'Utilizador desconhecido';
 
             const li = document.createElement('li');
-            li.textContent = `${marcacao.data} - com ${nomeExplicador} às ${marcacao.hora}`;
+            li.textContent = `${marcacao.data} - com ${nomeOutro} às ${marcacao.hora}`;
             lista.appendChild(li);
         });
     }
+}
+
+async function carregarDadosParaLocalStorage() {
+  try {
+    // Buscar alunos e explicadores
+    const [resUsers, resExplainers] = await Promise.all([
+      fetch('http://localhost:3000/user'),
+      fetch('http://localhost:3000/explainer')
+    ]);
+
+    if (!resUsers.ok || !resExplainers.ok) {
+      throw new Error('Erro ao buscar dados da API');
+    }
+
+    const users = await resUsers.json();
+    const explainers = await resExplainers.json();
+
+    // Junta os dois arrays num só, com propriedade 'type' para distinguir
+    const utilizadores = [
+      ...users.map(u => ({ ...u, type: u.type || 'aluno', nome: u.name || u.nome })),
+      ...explainers.map(e => ({ ...e, type: 'explicador', nome: e.name || e.nome }))
+    ];
+
+    // Guarda tudo no localStorage
+    localStorage.setItem('utilizadores', JSON.stringify(utilizadores));
+    localStorage.setItem('explicadores', JSON.stringify(explainers));
+
+    console.log('Dados carregados para localStorage');
+  } catch (error) {
+    console.error('Erro ao carregar dados:', error);
+  }
+}
+
+function buscarAlunoPorEmail(email) {
+    const alunos = JSON.parse(localStorage.getItem('utilizadores')) || [];
+    const explicadores = JSON.parse(localStorage.getItem('explicadores')) || [];
+
+    let aluno = alunos.find(u => u.email === email);
+    if (!aluno) {
+        // Caso não encontre no alunos, tenta nos explicadores (se quiseres)
+        aluno = explicadores.find(u => u.email === email);
+    }
+    return aluno;
+}
+
+
+function buscarExplicadorPorId(id) {
+    const explicadores = JSON.parse(localStorage.getItem('explicadores')) || [];
+    return explicadores.find(explicador => String(explicador.id) === String(id));
 }
 
 

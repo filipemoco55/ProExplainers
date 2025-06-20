@@ -80,7 +80,7 @@
       "modalidade": "Presencial",
       "local": "Porto",
       "preco": 16,
-      "classificacao": 4.5,
+      "classificacao": 0,
       "avaliacoes": [],
       "mensagens": [
         {
@@ -112,8 +112,13 @@
       "modalidade": "Online",
       "local": "Lisboa",
       "preco": 20,
-      "classificacao": 4.8,
-      "avaliacoes": [],
+      "classificacao": 2,
+      "avaliacoes": [
+        {
+          "userId": "1",
+          "nota": 2
+        }
+      ],
       "mensagens": [
         {
           "de": "Joao Silva",
@@ -145,8 +150,13 @@
       "modalidade": "Online",
       "local": "Amarante",
       "preco": 20,
-      "classificacao": 4,
-      "avaliacoes": [],
+      "classificacao": 5,
+      "avaliacoes": [
+        {
+          "userId": "1",
+          "nota": 5
+        }
+      ],
       "mensagens": [
         {
           "de": "Carlos Pereira",

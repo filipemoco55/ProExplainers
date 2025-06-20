@@ -84,21 +84,6 @@ document.addEventListener('DOMContentLoaded', () => {
     carregarMarcacoes(user.email);
 });
 
-function abrirChat(de, para, nomePara) {
-    const chatKey = `chat_${de}_${para}`;
-    const historico = JSON.parse(localStorage.getItem(chatKey)) || [];
-    const novaMensagem = prompt(`Mensagem para ${nomePara}:`);
-
-    if (!novaMensagem) return;
-
-    historico.push({ de, para, texto: novaMensagem, data: new Date().toISOString() });
-    localStorage.setItem(chatKey, JSON.stringify(historico));
-
-    alert('Mensagem enviada!');
-    location.reload();
-}
-
-
 function carregarMarcacoes(emailAluno) {
     const marcacoes = JSON.parse(localStorage.getItem('marcacoes')) || [];
     const minhasMarcacoes = marcacoes.filter(m => m.alunoEmail === emailAluno);

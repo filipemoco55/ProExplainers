@@ -33,7 +33,7 @@ async function carregarDisciplinas() {
   const todasDisciplinas = [...new Set([...disciplinasApi, ...nomesLocal])];
 
   const select = document.getElementById('disciplinas');
-  select.innerHTML = ''; 
+  select.innerHTML = '';
 
   todasDisciplinas.forEach(disciplina => {
     const option = document.createElement('option');

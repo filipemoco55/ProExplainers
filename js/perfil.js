@@ -71,14 +71,12 @@ document.addEventListener('DOMContentLoaded', () => {
         listaFavoritosEl.appendChild(li);
     });
 
-    carregarMensagens(user.email);
 
-    // Agora o logout só redireciona, NÃO apaga nada do localStorage
+
     const logoutElements = document.querySelectorAll('a[onclick*="logout"]');
     logoutElements.forEach(el => {
         el.addEventListener('click', (e) => {
             e.preventDefault();
-            // localStorage.clear();  <-- REMOVIDO para não apagar nada
             window.location.href = 'login.html';
         });
     });
@@ -100,75 +98,6 @@ function abrirChat(de, para, nomePara) {
     location.reload();
 }
 
-function carregarMensagens(emailAluno) {
-    const mensagens = JSON.parse(localStorage.getItem("mensagens")) || [];
-    const todasAsConversas = mensagens.filter(m => m.de === emailAluno || m.para === emailAluno);
-
-    const agrupadasPorExplicador = {};
-
-    todasAsConversas.forEach(msg => {
-        const outroEmail = msg.de === emailAluno ? msg.para : msg.de;
-        if (!agrupadasPorExplicador[outroEmail]) {
-            agrupadasPorExplicador[outroEmail] = [];
-        }
-        agrupadasPorExplicador[outroEmail].push(msg);
-    });
-
-    const section = document.createElement('section');
-    section.className = 'mensagens-section';
-    section.innerHTML = '<h2>📩 Conversas com Explicadores</h2>';
-
-    Object.entries(agrupadasPorExplicador).forEach(([emailExplicador, conversas]) => {
-        const div = document.createElement('div');
-        div.classList.add('mensagem-card');
-
-        const explicador = buscarExplicadorPorEmail(emailExplicador);
-        const nomeExplicador = explicador ? explicador.name : emailExplicador;
-
-        const titulo = document.createElement('h3');
-        titulo.textContent = `📨 ${nomeExplicador}`;
-        div.appendChild(titulo);
-
-        conversas.forEach(msg => {
-            const bloco = document.createElement('div');
-            bloco.innerHTML = `
-                <p><strong>Tu:</strong> ${msg.mensagem}</p>
-                <p><strong>${nomeExplicador}:</strong> ${msg.resposta || '<i>Sem resposta ainda</i>'}</p>
-                <hr>
-            `;
-            div.appendChild(bloco);
-        });
-
-        const textarea = document.createElement('textarea');
-        textarea.placeholder = 'Responder ao explicador...';
-        div.appendChild(textarea);
-
-        const btn = document.createElement('button');
-        btn.textContent = 'Enviar resposta';
-        btn.onclick = () => {
-            const novaMensagem = textarea.value.trim();
-            if (!novaMensagem) return;
-
-            const nova = {
-                id: crypto.randomUUID(),
-                de: emailAluno,
-                para: emailExplicador,
-                mensagem: novaMensagem,
-                resposta: ""
-            };
-
-            mensagens.push(nova);
-            localStorage.setItem("mensagens", JSON.stringify(mensagens));
-            alert('Mensagem enviada!');
-            location.reload();
-        };
-
-        div.appendChild(btn);
-        section.appendChild(div);
-    });
-
-    document.querySelector('.container').appendChild(section);
-}
 
 function carregarMarcacoes(emailAluno) {
     const marcacoes = JSON.parse(localStorage.getItem('marcacoes')) || [];
@@ -192,18 +121,6 @@ function carregarMarcacoes(emailAluno) {
 }
 
 
-
-function buscarExplicadorPorEmail(email) {
-    const explicadores = JSON.parse(localStorage.getItem("explicadores")) || [];
-    return explicadores.find(e => e.email === email);
-}
-
-function buscarExplicadorPorId(id) {
-    const explicadores = JSON.parse(localStorage.getItem("explicadores")) || [];
-    return explicadores.find(e => e.id == id);
-}
-
-
 function toggleProfileMenu() {
     const dropdown = document.getElementById('dropdown');
     dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
@@ -220,6 +137,5 @@ function toggleExplainerMenu() {
 }
 
 function logout() {
-    // Se usares este logout diretamente no onclick de um botão, faz só isto:
     window.location.href = 'login.html';
 }

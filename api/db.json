@@ -123,11 +123,15 @@
       "modalidade": "Online",
       "local": "Lisboa",
       "preco": 20,
-      "classificacao": 2,
+      "classificacao": 3.5,
       "avaliacoes": [
         {
           "userId": "1",
           "nota": 2
+        },
+        {
+          "userId": "0ff8d244-7da5-4e04-98f4-147daeb057e7",
+          "nota": 5
         }
       ],
       "mensagens": [

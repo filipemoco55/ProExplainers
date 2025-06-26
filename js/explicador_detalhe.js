@@ -208,7 +208,7 @@ async function avaliarExplicador(explicadorId, nota) {
   explicadores[idx] = explicador;
   localStorage.setItem("explicadores", JSON.stringify(explicadores));
 
-  // Envia atualização para a mock API (json-server)
+  // Envia atualização para a mock API 
   try {
     await fetch(`http://localhost:3000/explainer/${explicadorId}`, {
       method: "PATCH", // ou PUT, se estiveres a enviar o objeto completo
@@ -331,7 +331,7 @@ function gerarDiasSemana(explicador) {
     const dia = new Date(hoje);
     dia.setDate(hoje.getDate() + i);
 
-    const diaStr = dia.toISOString().split('T')[0]; // formato YYYY-MM-DD
+    const diaStr = dia.toISOString().split('T')[0]; 
 
     const btn = document.createElement('button');
     btn.textContent = dia.toLocaleDateString('pt-PT', { weekday: 'short', day: 'numeric', month: 'numeric' });

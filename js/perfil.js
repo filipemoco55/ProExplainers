@@ -166,7 +166,7 @@ function buscarAlunoPorEmail(email) {
 
     let aluno = alunos.find(u => u.email === email);
     if (!aluno) {
-        // Caso não encontre no alunos, tenta nos explicadores (se quiseres)
+        // Caso não encontre no alunos, tenta nos explicadores
         aluno = explicadores.find(u => u.email === email);
     }
     return aluno;

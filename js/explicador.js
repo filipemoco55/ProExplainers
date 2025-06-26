@@ -58,7 +58,6 @@ function mostrarConversasComAlunos() {
 
   mensagens.forEach(msg => {
     if (msg.de === utilizadorAtual.email || msg.para === utilizadorAtual.email) {
-      // O outro email é o que não for o do explicador
       const outroEmail = msg.de === utilizadorAtual.email ? msg.para : msg.de;
       if (!conversasPorAluno[outroEmail]) {
         conversasPorAluno[outroEmail] = [];

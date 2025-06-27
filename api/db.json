@@ -102,8 +102,13 @@
       "modalidade": "Presencial",
       "local": "Porto",
       "preco": 16,
-      "classificacao": 0,
-      "avaliacoes": [],
+      "classificacao": 5,
+      "avaliacoes": [
+        {
+          "userId": "1",
+          "nota": 5
+        }
+      ],
       "mensagens": [
         {
           "de": "Joao Silva",
@@ -241,27 +246,6 @@
       "local": "Madeira",
       "preco": 20,
       "classificacao": 4,
-      "avaliacoes": [],
-      "mensagens": []
-    },
-    {
-      "id": "0ff8d244-7da5-4e04-98f4-147daeb057e7",
-      "name": "gabriela",
-      "email": "gabrielavalente1110@gmail.com",
-      "password": "123",
-      "image": "https://via.placeholder.com/150",
-      "bio": "",
-      "disponibilidade": [
-        "manhas"
-      ],
-      "disciplinas": [
-        "Portugues"
-      ],
-      "nivel": "Universitário",
-      "modalidade": "Presencial",
-      "local": "porto",
-      "preco": 20,
-      "classificacao": 0,
       "avaliacoes": [],
       "mensagens": []
     }

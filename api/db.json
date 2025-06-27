@@ -61,6 +61,17 @@
       "disciplinas": [],
       "image": "https://via.placeholder.com/150",
       "mensagens": []
+    },
+    {
+      "id": "31214f6e-9b51-4df9-8c90-cb95692f4129",
+      "name": "filipe",
+      "email": "filipemoco55@gmail.com",
+      "password": "123",
+      "type": "aluno",
+      "cidade": "",
+      "disciplinas": [],
+      "image": "https://via.placeholder.com/150",
+      "mensagens": []
     }
   ],
   "explainer": [

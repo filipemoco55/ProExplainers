@@ -113,7 +113,7 @@ function filterAndRender() {
         filtered = filtered.filter(a => a.cidade === cidade);
     }
 
-    if (selectedDisciplinas.length > 0) {
+    if (selectedDisciplinas.length > 0) {   
         filtered = filtered.filter(a =>
             selectedDisciplinas.every(d => a.disciplinas?.includes(d))
         );

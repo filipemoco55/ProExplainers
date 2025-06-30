@@ -72,6 +72,30 @@
       "disciplinas": [],
       "image": "https://via.placeholder.com/150",
       "mensagens": []
+    },
+    {
+      "id": "4e4a5cd0-5d5f-4d83-be53-d700b9327ceb",
+      "name": "filipe",
+      "email": "filipemoco55@gmail.com",
+      "password": "123",
+      "type": "aluno",
+      "cidade": "",
+      "disciplinas": [],
+      "image": "https://via.placeholder.com/150",
+      "mensagens": []
+    },
+    {
+      "id": "8706245b-9f74-43e1-bdf7-33803b09e47a",
+      "nome": "asd",
+      "email": "asd@gmail.com",
+      "tipo": "aluno",
+      "type": "aluno",
+      "name": "asd",
+      "password": "123",
+      "image": "https://via.placeholder.com/150",
+      "mensagens": [],
+      "cidade": "",
+      "disciplinas": []
     }
   ],
   "explainer": [
@@ -139,7 +163,7 @@
       "modalidade": "Online",
       "local": "Lisboa",
       "preco": 20,
-      "classificacao": 3.5,
+      "classificacao": 4,
       "avaliacoes": [
         {
           "userId": "1",
@@ -147,6 +171,10 @@
         },
         {
           "userId": "0ff8d244-7da5-4e04-98f4-147daeb057e7",
+          "nota": 5
+        },
+        {
+          "userId": "31214f6e-9b51-4df9-8c90-cb95692f4129",
           "nota": 5
         }
       ],
@@ -246,6 +274,29 @@
       "local": "Madeira",
       "preco": 20,
       "classificacao": 4,
+      "avaliacoes": [],
+      "mensagens": []
+    },
+    {
+      "id": "c132579f-b811-426a-a0e8-c07934d590d2",
+      "name": "gabriela",
+      "email": "gabrielavalente1110@gmail.com",
+      "password": "123",
+      "image": "https://via.placeholder.com/150",
+      "bio": "",
+      "disponibilidade": [
+        "manhas"
+      ],
+      "disciplinas": [
+        "Matemática",
+        "Física",
+        "Portugues"
+      ],
+      "nivel": "Universitário",
+      "modalidade": "Presencial",
+      "local": "porto",
+      "preco": 209,
+      "classificacao": 0,
       "avaliacoes": [],
       "mensagens": []
     }
